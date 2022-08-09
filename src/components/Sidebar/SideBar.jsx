@@ -1,24 +1,26 @@
 import { NavLink } from "react-router-dom";
 import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
-import { BiAnalyse, BiSearch } from "react-icons/bi";
+//import { MdMessage } from "react-icons/md";
+//import { BiAnalyse, BiSearch } from "react-icons/bi";
 import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
-import { BsCartCheck } from "react-icons/bs";
+import { AiFillHeart, AiFillSave, AiTwotoneFileExclamation } from "react-icons/ai";
+//import { BsCartCheck } from "react-icons/bs";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
+
 const routes = [
   {
     path: "/",
-    name: "Dashboard",
-    icon: <FaHome />,
+    name: "Informations Projet",
+    icon: <FaHome size={22}/>,
   },
   {
-    path: "/users",
-    name: "Users",
-    icon: <FaUser />,
+    path: "/settings",
+    name: "Parametres generaux",
+    icon: <BiCog size={22}/>,
   },
+  /*
   {
     path: "/messages",
     name: "Messages",
@@ -29,60 +31,28 @@ const routes = [
     name: "Analytics",
     icon: <BiAnalyse />,
   },
+  */
   {
-    path: "/file-manager",
-    name: "File Manager",
-    icon: <AiTwotoneFileExclamation />,
+    path: "/ccv",
+    name: "Cout De Cycle De Vie",
+    icon: <AiTwotoneFileExclamation size={22}/>,
     subRoutes: [
       {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
+        path: "/ccv/simple",
+        name: "Simple ",
+        icon: <FaUser size={22}/>,
       },
       {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
+        path: "/ccv/developpe",
+        name: "Developpe",
+        icon: <FaLock size={22}/>,
+      }
     ],
   },
   {
-    path: "/order",
-    name: "Order",
-    icon: <BsCartCheck />,
-  },
-  {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
-  },
-  {
-    path: "/saved",
-    name: "Saved",
-    icon: <AiFillHeart />,
+    path: "/results",
+    name: "Resultats",
+    icon: <AiFillSave size={22}/>,
   },
 ];
 
@@ -98,7 +68,7 @@ const SideBar = ({ children }) => {
       },
     },
     show: {
-      width: "140px",
+      width: "160px",
       padding: "5px 15px",
       transition: {
         duration: 0.2,
@@ -128,7 +98,7 @@ const SideBar = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "200px" : "45px",
+            width: isOpen ? "240px" : "45px",
 
             transition: {
               duration: 0.5,
@@ -148,7 +118,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  DoSomeCoding
+                  BIM
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -157,6 +127,7 @@ const SideBar = ({ children }) => {
               <FaBars onClick={toggle} />
             </div>
           </div>
+          {/*
           <div className="search">
             <div className="search_icon">
               <BiSearch />
@@ -174,6 +145,7 @@ const SideBar = ({ children }) => {
               )}
             </AnimatePresence>
           </div>
+              */}
           <section className="routes">
             {routes.map((route, index) => {
               if (route.subRoutes) {
@@ -190,11 +162,11 @@ const SideBar = ({ children }) => {
               return (
                 <NavLink
                   to={route.path}
-                  key={index}
+                  key={route.name}
                   className="link"
                   activeClassName="active"
                 >
-                  <div className="icon">{route.icon}</div>
+                  <div className="icon" >{route.icon}</div>
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
