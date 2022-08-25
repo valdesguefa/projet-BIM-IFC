@@ -13,6 +13,9 @@ import '../styles/result.scss'
 
 import Radium, { StyleRoot } from 'radium';
 import ResultsSimple from './resultsSimple';
+import ResultsDeveloppe from './ResultsDeveloppe';
+
+
 
 const styles = {
   bounce: {
@@ -40,6 +43,10 @@ export default function Results(props) {
   const [ccvs, setccvs] = useState(0)
   const [Cpersistance, setCpersistance] = useState(0)
   const [Cdementellement, setCdementellement] = useState(0)
+
+  useEffect(() => {
+    props.setshowAppBar(false)
+  }, [])
 
   function Actu(Ca, T, a, N) {
     var n0 = T
@@ -78,63 +85,41 @@ export default function Results(props) {
     console.log('setccvs', c)
     setccvs(c)
 
-
-
   }, [props])
 
+  useEffect(() => {
+    console.log('props.checkedSimple', props.checkedSimple)
+  }, [props.checkedSimple])
 
 
   return (
     // <StyleRoot>
-    <div style={styles.bounce}>
+    <div style={styles.bounce} className="contain">
+      {
+        props.checkedSimple ? <ResultsSimple checkedDeveloppe={props.checkedDeveloppe} checkedSimple={props.checkedSimple} nom={props.nom} constructDate={props.constructDate} constructionArea={props.constructionArea} nature={props.nature}
+          actualisation={props.actualisation} inflation={props.inflation} persistance={props.persistance} actualisationReel={props.actualisationReel}
+          dementellement={props.dementellement} utilisation={props.utilisation} investissement={props.investissement}
+          Cpersistance={Cpersistance} Cdementellement={Cdementellement} ccvs={ccvs}
+        />
 
-      {/* <div >
-        <div className='content'>
-          Le projet
-        </div>
-        <span>              Nom	:	{props.nom}</span>
-        <span>          Nature	:	{props.nature}</span>
-        <span>Date de livraison	:		{props.constructDate}</span>
-        <span>          Surface	:	{props.constructionArea}</span>
-        <span>  Mode d'analyse	:	{props.checkedSimple ? 'Global' : 'Detaille'}	</span>
+          :
+          <ResultsDeveloppe checkedDeveloppe={props.checkedDeveloppe} checkedSimple={props.checkedSimple} nom={props.nom} constructDate={props.constructDate} constructionArea={props.constructionArea} nature={props.nature}
+            actualisation={props.actualisation} inflation={props.inflation} persistance={props.persistance} actualisationReel={props.actualisationReel}
+            dementellement={props.dementellement} utilisation={props.utilisation} investissement={props.investissement}
 
-      </div>
+            construction={props.construction} compose={props.compose} fonction={props.fonction} prestation={props.prestation}
 
-      <div >
-        <div>
-          Paramètres généraux
-        </div>
-        <span>        Période d'analyse	:	{props.persistance}</span>
-        <span>               Variation	:	{props.actualisation}</span>
-        <span>Taux d'actualisation reel :	{props.actualisationReel}</span>
-        <span>Taux d'inflation général	:	{props.inflation}</span>
+            constructionMaintenance={props.constructionMaintenance} fonctionMaintenance={props.fonctionMaintenance} composeMaintenance={props.composeMaintenance} prestationMaintenance={props.prestationMaintenance}
 
-      </div >
-      <div >
-        <div>
-          Périmètre du projet (en XCFA)
-        </div>
-        <div>
-          <strong  >Coût d'utilisation sur la période de persistance : {Cpersistance} </strong>
+            externalites={props.externalites}
 
-          <strong  >                          Coût de dementellement : {Cdementellement} </strong>
+            externalitesDementellement={props.externalitesDementellement}
 
-          <strong  >                 Coût de cycle de vie simplifiee : {ccvs}</strong>
-        </div>
-      </div>
+            systeme={props.systeme} appareil={props.appareil} equipement={props.equipement} filtre={props.filtre} chauffe={props.chauffe} eclairage={props.eclairage}
+            settotalProjects={props.settotalProjects}
 
-      <div>
-
-      </div> */}
-
-
-      <ResultsSimple checkedDeveloppe={props.checkedDeveloppe} checkedSimple={props.checkedSimple} nom={props.nom} constructDate={props.constructDate} constructionArea={props.constructionArea} nature={props.nature}
-        actualisation={props.actualisation} inflation={props.inflation} persistance={props.persistance} actualisationReel={props.actualisationReel}
-        dementellement={props.dementellement} utilisation={props.utilisation} investissement={props.investissement}
-        Cpersistance={Cpersistance} Cdementellement={Cdementellement} ccvs={ccvs}
-      />
-
-
+          />
+      }
     </div>
     // </StyleRoot>
   )

@@ -7,13 +7,16 @@
     position: absolute;
     padding: 10vh;
     height: 65vh;
-    background-color: rgb(157, 157, 167);
+     background-color: rgb(190, 190, 190); 
+    opacity: 0.87;
     margin-top: 15vh;
    border-radius: 5%;
    
 }
 .backs{
-    background-color: rgb(255, 253, 253);
+    background-image: url('../shared/pngegg.png');
+    background-repeat: no-repeat;
+    background-size: 120%;
     width: 80vw;
     height: 100%;
     

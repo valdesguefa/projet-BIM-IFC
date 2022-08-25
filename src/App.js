@@ -12,6 +12,12 @@ import Results from "./pages/Results";
 import React, { useEffect, useState } from 'react'
 import Notfound from "./pages/Notfound";
 import AppComp from "./pages/AppComp";
+import Externalites from "./pages/Externalites";
+import Demmentellement from "./pages/Dementellement";
+import Utilisation from "./pages/Utilisation";
+import Maintenance from "./pages/Maintenance";
+import IfcConfig from "./pages/IfcConfig";
+import Debut from "./pages/debut";
 
 var todaysDate = new Date();
 
@@ -29,10 +35,9 @@ function convertDate(date) {
 function App() {
 
 
-
   //projet
   const [nom, setnom] = useState('')
-  const [constructDate, setconstructDate] = useState(convertDate(todaysDate))
+  const [constructDate, setconstructDate] = useState('')
   const [constructionArea, setconstructionArea] = useState(0)
   const [nature, setnature] = useState('')
   const [checkedSimple, setcheckedSimple] = useState(false)
@@ -53,43 +58,160 @@ function App() {
 
 
   // useEffect(() => {
-  //   console.log('voici le nom', nom)
+  //   //   console.log('voici le nom', nom)
   //   console.log('voici le constructDate', constructDate)
-  //   console.log('voici le constructionArea', constructionArea)
-  //   console.log('voici le nature', nature)
+  //   //   console.log('voici le constructionArea', constructionArea)
+  //   //   console.log('voici le nature', nature)
 
-  // }, [nom, constructDate, constructionArea, nature])
+  // }, [constructDate])
+
+  const [showSideBar, setshowSideBar] = useState(false)
+
+  const [showAppBar, setshowAppBar] = useState(false)
+
+
+
 
   // useEffect(() => {
-  //   console.log('voici le persistance', persistance)
-  //   console.log('voici le actualisation', actualisation)
-  //   console.log('voici le actualisationReel', actualisationReel)
-  //   console.log('voici le inflation', inflation)
+  //   console.log('voici le checkedSimple', checkedSimple)
+  //   console.log('checkedDeveloppe', checkedDeveloppe)
+  // }, [checkedDeveloppe, checkedSimple])
 
-  // }, [persistance, actualisation, actualisationReel, inflation])
+  //construction
+  const [construction, setconstruction] = useState([])
+  const [compose, setcompose] = useState([])
+  const [fonction, setfonction] = useState([])
+  const [prestation, setprestation] = useState([])
+
+  // React.useEffect(() => {
+  //   console.log('props.setconstruction ----', construction);
+  //   console.log(' props.setcompose ----', compose);
+  //   console.log(' props.setfonction ----', fonction);
+  //   console.log('  props.setprestation ----', prestation)
+  // }, [construction, compose, fonction, prestation])
+
+  //utilisation
+  const [eclairage, seteclairage] = React.useState([])
+  const [chauffe, setchauffe] = React.useState([])
+  const [filtre, setfiltre] = React.useState([])
+  const [equipement, setequipement] = React.useState([])
+  const [appareil, setappareil] = React.useState([])
+  const [systeme, setsysteme] = React.useState([])
+
+  // React.useEffect(() => {
+  //   console.log('props.seteclairage', eclairage);
+  //   console.log(' props.setchauffe', chauffe);
+  //   console.log(' props.setfiltre', filtre);
+  //   console.log('  props.setequipement', equipement)
+  //   console.log('  props.setappareil', appareil)
+  //   console.log('  props.setsysteme', systeme)
+  // }, [eclairage, chauffe, filtre, equipement, appareil, systeme])
+
+  //maintenance et remplacement
+  const [constructionMaintenance, setconstructionMaintenance] = useState([])
+  const [composeMaintenance, setcomposeMaintenance] = useState([])
+  const [fonctionMaintenance, setfonctionMaintenance] = useState([])
+  const [prestationMaintenance, setprestationMaintenance] = useState([])
+
+  // React.useEffect(() => {
+  //   console.log('props.setconstructionMaintenance', constructionMaintenance);
+  //   console.log(' props.setcomposeMaintenance', composeMaintenance);
+  //   console.log(' props.setfonctionMaintenance', fonctionMaintenance);
+  //   console.log('  props.setprestationMaintenance', prestationMaintenance)
+  // }, [constructionMaintenance, composeMaintenance, fonctionMaintenance, prestationMaintenance])
+
+  //dementellement
+  const [externalitesDementellement, setexternalitesDementellement] = React.useState([])
+  // React.useEffect(() => {
+  //   console.log('props.setexternalitesDementellement', externalitesDementellement);
+  // }, [externalitesDementellement])
+
+
+  //externalites
+  const [externalites, setexternalites] = React.useState([])
+
+  const [totalProjects, settotalProjects] = React.useState(0)
+const [disableSidebar, setdisableSidebar] = React.useState(true)
 
 
   return (
 
     <Router>
-      <SideBar>
-        <Routes>
-          {/* <Route path="/" element={<AppComp />} /> */}
-          <Route path="/" element={<InfoProject checkedDeveloppe={checkedDeveloppe} setcheckedDeveloppe={setcheckedDeveloppe} checkedSimple={checkedSimple} setcheckedSimple={setcheckedSimple} nom={nom} setnom={setnom} constructDate={constructDate} setconstructDate={setconstructDate} constructionArea={constructionArea} setconstructionArea={setconstructionArea} nature={nature} setnature={setnature} />} />
 
-          <Route path="/settings" element={<Settings actualisation={actualisation} setactualisation={setactualisation} setinflation={setinflation} inflation={inflation} persistance={persistance} setpersistance={setpersistance} actualisationReel={actualisationReel} setactualisationReel={setactualisationReel} />} />
-         
+
+      <SideBar showAppBar={showAppBar} disableSidebar={disableSidebar} >
+        <Routes>
+
+          <Route path="/" element={<Debut setdisableSidebar={setdisableSidebar}/>} />
+
+          {/* <Route path="/" element={<AppComp />} /> */}
+          <Route path="/info" element={<InfoProject setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} setcheckedDeveloppe={setcheckedDeveloppe} checkedSimple={checkedSimple} setcheckedSimple={setcheckedSimple} nom={nom} setnom={setnom} constructDate={constructDate} setconstructDate={setconstructDate} constructionArea={constructionArea} setconstructionArea={setconstructionArea} nature={nature} setnature={setnature} />} />
+
+          <Route path="/settings" element={<Settings checkedDeveloppe={checkedDeveloppe} setshowAppBar={setshowAppBar} actualisation={actualisation} setactualisation={setactualisation} setinflation={setinflation} inflation={inflation} persistance={persistance} setpersistance={setpersistance} actualisationReel={actualisationReel} setactualisationReel={setactualisationReel} />} />
+
           {/* <Route path="/messages" element={<Messages />} />
           <Route path="/analytics" element={<Analytics />} /> 
           */}
           <Route path="/ccv" element={<LifeCycle />} />
-          <Route path="/ccv/simple" element={<Simple persistance={persistance} actualisationReel={actualisationReel} actualisation={actualisation} dementellement={dementellement} setdementellement={setdementellement} utilisation={utilisation} setutilisation={setutilisation} investissement={investissement} setinvestissement={setinvestissement} />} />
-          <Route path="/ccv/developpe" element={<Developpe />} />
-          <Route path="/results" element={<Results checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
+
+          <Route path="/ccv/simple" element={<Simple setshowAppBar={setshowAppBar} persistance={persistance} actualisationReel={actualisationReel} actualisation={actualisation} dementellement={dementellement} setdementellement={setdementellement} utilisation={utilisation} setutilisation={setutilisation} investissement={investissement} setinvestissement={setinvestissement} />} />
+
+          <Route path="/ccv/developpe/Construction" element={<Developpe setshowAppBar={setshowAppBar} setconstruction={setconstruction} setfonction={setfonction} setcompose={setcompose} setprestation={setprestation} />} />
+
+          {/*
+console.log('props.seteclairage', eclairage);
+    console.log(' props.setchauffe', chauffe);
+    console.log(' props.setfiltre', filtre);
+    console.log('  props.setequipement', equipement)
+    console.log('  props.setappareil', appareil)
+    console.log('  props.setsysteme', systeme)
+        */}
+        
+          <Route path="/ccv/developpe/Utilisation" element={<Utilisation setsysteme={setsysteme} setappareil={setappareil} setequipement={setequipement} setfiltre={setfiltre} setchauffe={setchauffe} seteclairage={seteclairage} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+
+          <Route path="/ccv/developpe/maintenance_remplacement" element={<Maintenance setconstruction={setconstructionMaintenance} setfonction={setfonctionMaintenance} setcompose={setcomposeMaintenance} setprestation={setprestationMaintenance} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+
+          <Route path="/ccv/developpe/Externalite" element={<Externalites setexternalites={setexternalites} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+
+          <Route path="/ccv/developpe/Dementellement" element={<Demmentellement setexternalitesDementellement={setexternalitesDementellement} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+
+
+
+          <Route path="/ccv/developpe/ifcConfig" element={<IfcConfig setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
             actualisation={actualisation} inflation={inflation} persistance={persistance} actualisationReel={actualisationReel}
             dementellement={dementellement} utilisation={utilisation} investissement={investissement}
+
+            compose={compose} fonction={fonction} prestation={prestation}
+
+            constructionMaintenance={constructionMaintenance} fonctionMaintenance={fonctionMaintenance} composeMaintenance={composeMaintenance} prestationMaintenance={prestationMaintenance}
+
+            externalites={externalites}
+
+            externalitesDementellement={externalitesDementellement}
+
+            systeme={systeme} appareil={appareil} equipement={equipement} filtre={filtre} chauffe={chauffe} eclairage={eclairage}
+            totalProjects={totalProjects}
           />} />
-          <Route path="*" element={<Notfound />} />
+
+          <Route path="/results" element={<Results setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
+            actualisation={actualisation} inflation={inflation} persistance={persistance} actualisationReel={actualisationReel}
+            dementellement={dementellement} utilisation={utilisation} investissement={investissement}
+
+            construction={construction} compose={compose} fonction={fonction} prestation={prestation}
+
+            constructionMaintenance={constructionMaintenance} fonctionMaintenance={fonctionMaintenance} composeMaintenance={composeMaintenance} prestationMaintenance={prestationMaintenance}
+
+            externalites={externalites}
+
+            externalitesDementellement={externalitesDementellement}
+
+            systeme={systeme} appareil={appareil} equipement={equipement} filtre={filtre} chauffe={chauffe} eclairage={eclairage}
+            settotalProjects={settotalProjects}
+
+          />} />
+
+          <Route path="*" element={<Notfound setshowAppBar={setshowAppBar} />} />
+
         </Routes>
       </SideBar>
     </Router>

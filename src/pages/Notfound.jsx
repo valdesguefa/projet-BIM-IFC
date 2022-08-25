@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageNotFound from '../shared/PageNotFound.jpg';
 import '../styles/notfound.css'
-const Notfound = () => {
+const Notfound = (props) => {
+
+    useEffect(() => {
+        props.setshowAppBar(false)
+      }, [])
+
     return (
         <div >
            

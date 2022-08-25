@@ -4,17 +4,20 @@
 .form{
     width: 30vw;
     margin-left: 30vw;
-    position: absolute;
     padding: 10vh;
     height: 60vh;
-    background-color: rgb(157, 157, 167);
+    background-color: rgb(190, 190, 190); 
+    opacity: 0.95;
     margin-top: 15vh;
    border-radius: 5%;
+   padding-bottom: 20px;
    
 }
 .back{
-    background-repeat: no-repeat;
-    width: 100%;
+    background-image: url('../shared/pngegg.png');
+    /* background-size: '160% 100%'; */
+    background-size: '50px 50px';
+    width: 160%;
     height: 100%;
     
 }

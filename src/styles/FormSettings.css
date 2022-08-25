@@ -7,9 +7,11 @@
     position: absolute;
     padding: 10vh;
     height: 65vh;
-    background-color: rgb(157, 157, 167);
+    background-color: rgb(190, 190, 190); 
+    opacity: 0.95;
     margin-top: 15vh;
    border-radius: 5%;
+   padding-bottom: 100px ;
    
 }
 .back{

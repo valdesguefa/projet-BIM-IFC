@@ -1,0 +1,14 @@
+tr{
+    height: 7px !important;
+}
+
+tr td{
+    height: auto !important;
+}
+table th{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+}

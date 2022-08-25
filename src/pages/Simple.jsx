@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/simple.css'
 import TextField from '@mui/material/TextField';
 
@@ -28,6 +28,10 @@ export default function Simple(props) {
     return Act
   }
 */
+
+useEffect(() => {
+  props.setshowAppBar(false)
+}, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();

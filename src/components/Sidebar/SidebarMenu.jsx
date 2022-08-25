@@ -1,7 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link  } from "react-router-dom";
+
+
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
 
 const menuAnimation = {
   hidden: {
@@ -42,6 +60,8 @@ const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
     setIsOpen(true);
   };
 
+
+
   useEffect(() => {
     if (!isOpen) {
       setIsMenuOpen(false);
@@ -49,7 +69,10 @@ const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
   }, [isOpen]);
   return (
     <>
-      <div className="menu" onClick={toggleMenu}>
+
+
+
+      <div className="menu"  onClick={toggleMenu}>
         <div className="menu_item">
           <div className="icon">{route.icon}</div>
           <AnimatePresence>
@@ -91,10 +114,12 @@ const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
           >
             {route.subRoutes.map((subRoute, i) => (
               <motion.div variants={menuItemAnimation} key={i} custom={i}>
-                <NavLink to={subRoute.path} className="link">
+                <Link to={subRoute.path} className="link" 
+                
+                >
                   <div className="icon" >{subRoute.icon}</div>
                   <motion.div className="link_text">{subRoute.name}</motion.div>
-                </NavLink>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

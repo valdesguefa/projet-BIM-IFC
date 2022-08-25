@@ -1,8 +1,27 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
 
 * {
   transition: all 0.3s ease-out;
 }
+
+.cardHeaderDev {
+ 
+  width: 80% !important;
+  border-color: #000000 ;
+  border-style: solid;
+  border-width: 1px ;
+  background-color: #00838d;
+  border-radius: 10px;
+  margin-left: 100px ;
+  position: relative;
+  margin: auto;
+  padding: 32px 24px;
+}
+
+table{
+    border : 0px solid #000000;
+    }
 
 html,
 body {
@@ -11,44 +30,18 @@ body {
   font-size: 16px;
 }
 
-// .container1 {
-//  // background-image: url('../shared/pngegg.png');
-//   height: 90% !important;
-//   width: 130%;
-//   display: flex;
-//   margin-left: 0px !important;
-//   margin-top: 100px;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-.containerSimple {
-  height: 100% !important;
-  width: 100% !important;
-  margin-top: -10%;
+.container {
+  width: 80%;
   display: flex;
+  // margin-left: 10px;
+  // margin-top: -7px;
+  background-color: #f2f8f9;
+  background-color: 'red';
   flex-wrap: wrap;
+  height: 660px;
+  overflow: overlay;
   align-items: center;
   justify-content: center;
-}
-
-.cardHeader {
-  
-  width: 660px;
-  border-color: #000000 !important;
-  display: block;
-  border-style: solid;
-  border-width: 1px !important;
-  align-items: center;
-  align-content: center;
-  background-color: #00838d !important;
-  color:'white';
-  border-radius: 10px;
-  margin-left: 40%;
-  position: relative;
-  margin: auto;
-  padding: 32px 24px;
 }
 
 h3 {
@@ -91,17 +84,18 @@ p {
   font-family: courier, sans;
 }
 
-.card1 {
+.card1Dev {
   display: block;
   position: relative;
   max-width: 262px;
   background-color: #f2f8f9;
   border-radius: 4px;
   padding: 32px 24px;
-  margin: 12px;
-  // height: 350px;
+  
+  // height: 320px;
+  margin-left: 150px;
   text-decoration: none;
-
+  
   z-index: 0;
   overflow: hidden;
 
@@ -125,7 +119,7 @@ p {
   }
 }
 
-.card1:hover {
+.card1Dev:hover {
   p {
     transition: all 0.3s ease-out;
     color: rgba(255, 255, 255, 0.8);
@@ -136,20 +130,22 @@ p {
   }
 }
 
-.card2 {
+.card2Dev {
   display: block;
   top: 0px;
   position: relative;
   max-width: 262px;
   background-color: #f2f8f9;
   border-radius: 4px;
+  
+  // height: 320px;
   padding: 32px 24px;
   margin: 12px;
   text-decoration: none;
   z-index: 0;
   overflow: hidden;
   border: 1px solid #f2f8f9;
-  // height: 350px;
+
   &:hover {
     transition: all 0.2s ease-out;
     box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
@@ -178,20 +174,21 @@ p {
   }
 }
 
-.card3 {
+.card3Dev {
   display: block;
   top: 0px;
   position: relative;
   max-width: 262px;
+  
+  // height: 320px;
   background-color: #f2f8f9;
   border-radius: 4px;
   padding: 32px 24px;
-  // height: 350px;
   margin: 12px;
   text-decoration: none;
   overflow: hidden;
   border: 1px solid #f2f8f9;
-
+  
   .go-corner {
     opacity: 0.7;
   }
@@ -203,15 +200,14 @@ p {
   }
 }
 
-.card3:hover {
-  p {
-    color: #00838d;
-  }
+.card3Dev:hover {
+  p{color: #00838d}
   .go-corner {
     transition: opactiy 0.3s linear;
     opacity: 1;
   }
 }
+
 
 .card4 {
   display: block;
@@ -225,7 +221,7 @@ p {
   text-decoration: none;
   overflow: hidden;
   border: 1px solid #cccccc;
-
+  
   .go-corner {
     background-color: #00838d;
     height: 100%;
@@ -235,9 +231,9 @@ p {
     transform: skew(6deg);
     margin-right: -36px;
     align-items: start;
-    background-image: linear-gradient(-45deg, #8f479a 1%, #dc2a74 100%);
+    background-image: linear-gradient(-45deg, #8F479A 1%, #DC2A74 100%);
   }
-
+  
   .go-arrow {
     transform: skew(-6deg);
     margin-left: -2px;
@@ -246,12 +242,10 @@ p {
   }
 
   &:hover {
-    border: 1px solid #cd3d73;
+    border: 1px solid #CD3D73;
   }
-
-  h3 {
-    margin-top: 8px;
-  }
+  
+  h3 {margin-top: 8px;}
 }
 
 .card4:hover {
@@ -259,6 +253,40 @@ p {
     margin-right: -12px;
   }
   .go-arrow {
+    opacity: 1;
+  }
+}
+
+
+.card5 {
+  display: inline-flex;
+  top: 0px;
+  position: relative;
+  max-width: 95%;
+  height: 320px;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid #f2f8f9;
+  
+  .go-corner {
+    opacity: 0.7;
+  }
+
+  &:hover {
+    border: 1px solid #00838d;
+    box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+    z-index: 500;
+  }
+}
+
+.card5:hover {
+  p{color: #00838d}
+  .go-corner {
+    transition: opactiy 0.3s linear;
     opacity: 1;
   }
 }

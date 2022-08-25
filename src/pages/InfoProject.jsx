@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/Form.css'
 import TextField from '@mui/material/TextField';
 
@@ -7,6 +7,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+
+
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
@@ -21,26 +25,29 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={12} ref={ref} variant="filled" {...props} />;
 });
 
+var todaysDate = new Date();
 function convert(str) {
   var date = new Date(str),
     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
     day = ("0" + date.getDate()).slice(-2);
-  return [day, mnth,  date.getFullYear()].join("-");
+  return [day, mnth, date.getFullYear()].join("-");
 }
 
 export default function InfoProject(props) {
   let navigate = useNavigate();
 
   const [open, setopen] = useState(false)
+
+  const [myDate, setmyDate] = useState(null)
   // const [nom, setnom] = useState('')
   // const [constructDate, setconstructDate] = useState('')
   // const [constructionArea, setconstructionArea] = useState('')
   // const [nature, setnature] = useState('')
 
   const handleChange = (newValue) => {
-   // console.log('props.setconstructDate(newValue);',new Date(newValue).toISOString())
-   //console.log('props.setconstructDate(newValue);',convert(`${newValue}`))
-   props.setconstructDate(convert(`${newValue}`));
+    // console.log('props.setconstructDate(newValue);',new Date(newValue).toISOString())
+    //console.log('props.setconstructDate(newValue);',convert(`${newValue}`))
+    props.setconstructDate(convert(`${newValue}`));
   };
 
   const handleClose = (event, reason) => {
@@ -50,6 +57,11 @@ export default function InfoProject(props) {
 
     setopen(false);
   };
+
+  useEffect(() => {
+    props.setshowAppBar(false)
+  }, [])
+
 
   const natures = [
     {
@@ -74,6 +86,11 @@ export default function InfoProject(props) {
     },
   ];
 
+  useEffect(() => {
+    props.setconstructDate(convert(`${myDate}`))
+  }, [myDate])
+
+
   const nextPage = (e) => {
     e.preventDefault();
     if (props.checkedSimple || props.checkedDeveloppe) {
@@ -83,6 +100,17 @@ export default function InfoProject(props) {
       setopen(true)
     }
 
+  }
+
+  function convertDate(date) {
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth() + 1).toString();
+    var dd = date.getDate().toString();
+
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return (ddChars[1] ? dd : "0" + ddChars[0]) + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + yyyy;
   }
 
   return (
@@ -128,15 +156,29 @@ export default function InfoProject(props) {
                   </MenuItem>
                 ))}
               </TextField>
+              {/* 
+              <DatePicker
+        label="Date de construction"
+        // inputFormat="dd/MM/yyyy"
+         className='textfield'
+        value={value}
+        onChange={(newValue) => {
+          handleChange(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      /> */}
 
               <DesktopDatePicker
                 label="Date de construction"
-                inputFormat="dd/MM/yyyy"
+                // inputFormat="dd/MM/yyyy"
                 className='textfield'
 
                 placeholder='entrer une date'
-                value={props.constructDate || null}
-                onChange={(date)=>handleChange(date)}
+                //  value={props.constructDate !== ''? props.constructDate : null}//`${convertDate(todaysDate)}`}
+                // value={props.constructDate}
+                // onChange={(date)=>{console.log('that is date',date);handleChange(date)}}
+                value={myDate}
+                onChange={(date) => setmyDate(date)}
                 renderInput={(params) => <TextField
                   // error={constructDate === '' ? true : false }
 
@@ -166,7 +208,7 @@ export default function InfoProject(props) {
 
               <div style={{ display: 'block' }}>
                 <div style={{ float: 'left', }}>
-                  Global
+                  Simplifie
 
                   <Checkbox
                     checked={props.checkedSimple}

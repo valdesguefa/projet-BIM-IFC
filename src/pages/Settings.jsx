@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/FormSettings.css'
 import TextField from '@mui/material/TextField';
 
@@ -11,9 +11,18 @@ export default function Settings(props) {
 
   const nextPage=(e)=>{
     e.preventDefault();
-    
-    navigate("/ccv/simple", { replace: true });
+    if(props.checkedDeveloppe){
+      navigate("/ccv/developpe/Construction", { replace: true });
+    }
+    else{
+      navigate("/ccv/simple", { replace: true });
+    }
+   
   }
+
+  useEffect(() => {
+    props.setshowAppBar(false)
+  }, [])
 
   return (
     <div className='back'>
@@ -57,7 +66,7 @@ export default function Settings(props) {
             <TextField
               className='textfield'
               required
-              type={'number'}
+              type={'decimal'}
               size='small'
               fullWidth
               InputProps={{
@@ -67,7 +76,7 @@ export default function Settings(props) {
               }}
               //  error={nom === '' ? true : false}
               value={props.actualisationReel}
-              onChange={(e) => props.setactualisationReel(e.target.value)}
+              onChange={(e) => {props.setactualisationReel(e.target.value); console.log(e.target.value)}}
               placeholder='%'
               id="outlined-error-helper-text"
               label="Taux d'actualisation réel"
