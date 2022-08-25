@@ -88,6 +88,7 @@ export default function ResultsDeveloppe(props) {
             }
         }
         settotalConstruction(a.toFixed(3))
+      //  settotalProject(totalProject + a)
     }, [props.construction, props.compose, props.fonction, props.prestation])
 
 
@@ -114,6 +115,8 @@ export default function ResultsDeveloppe(props) {
             a = a + obj.cmrtg
         }
         settotalMaintenance(a)
+     //   settotalProject(totalProject + a)
+
     }, [props.constructionMaintenance])
 
     //[props.constructionMaintenance, props.composeMaintenance, props.fonctionMaintenance, props.prestationMaintenance])
@@ -127,6 +130,7 @@ export default function ResultsDeveloppe(props) {
             //ActuMR(obj.cex * obj.quantite, props.actualisation, props.actualisationReel / 100, props.persistance, obj.tex)
         }
         settotalDementellement(a.toFixed(3))
+      //  settotalProject(totalProject + a)
     }, [props.externalitesDementellement])
 
     useEffect(() => {
@@ -135,7 +139,9 @@ export default function ResultsDeveloppe(props) {
 
             a = a + ActuMR(obj.cex * obj.quantite, props.actualisation, props.actualisationReel / 100, props.persistance, obj.tex)
         }
+     //   settotalProject(totalProject + a)
         settotalExternalite(a.toFixed(3))
+
     }, [props.externalites])
 
 
@@ -187,7 +193,6 @@ export default function ResultsDeveloppe(props) {
 
         }
         settotalSysteme(a)
-
     }, [props.systeme])
 
     useEffect(() => {
@@ -197,27 +202,38 @@ export default function ResultsDeveloppe(props) {
             a = a + Actu((obj6.quantite * (obj6.aqc + obj6.ec * obj6.fc * (1 + obj6.fr / 100) / (1 + props.actualisationReel / 100))), props.actualisation, props.actualisationReel / 100, props.persistance)
         }
         settotalAppareil(a)
-
     }, [props.appareil])
 
     useEffect(() => {
         settotalEnergie(totalChauffe + totalEclairage + totalFiltre + totalEquipement)
-    }, [totalAppareil, totalChauffe, totalEclairage, totalFiltre, totalSysteme, totalEquipement])
+    }, [totalChauffe, totalEclairage, totalFiltre, totalEquipement])
 
     useEffect(() => {
+      //  settotalProject(totalProject + totalEnergie + totalAppareil + totalSysteme)
         settotalUtilisation(totalEnergie + totalAppareil + totalSysteme)
+
     }, [totalEnergie, totalAppareil, totalSysteme])
 
     useEffect(() => {
-        var b = null
-        b = totalUtilisation + totalConstruction + totalDementellement + totalExternalite + totalMaintenance
-        //    if(b!==null){
-        //     b= b.toFixed(3)  
-        //    } 
-        props.settotalProjects(b)
-        settotalProject(b)
-    }, [totalUtilisation, totalConstruction, totalDementellement, totalExternalite, totalMaintenance])
+        var b = 0
+        b = parseFloat(totalDementellement) + parseFloat(totalExternalite) + parseFloat(totalUtilisation) + parseFloat(totalConstruction) +  parseFloat(totalMaintenance)
+       
+            props.settotalProjects(b.toFixed(3))//(parseFloat(b).toFixed(3))
+            settotalProject(b.toFixed(3))//(parseFloat(b).toFixed(3))
+  
+    
+        // console.log('totalDementellement', totalDementellement)
+        // console.log('totalExternalite', totalExternalite)
+        // console.log('totalUtilisation', totalUtilisation)
+        // console.log('totalConstruction', totalConstruction)
+        // console.log('totalMaintenance', totalMaintenance)
+    }, [totalDementellement, totalExternalite, totalUtilisation, totalConstruction, totalMaintenance])
 
+
+    useEffect(() => {
+        props.settotalProjects(totalProject)
+        console.log('props.settotalProjects(totalProject)',totalProject)
+    }, [totalProject])
 
     return (
         <div className="container">
@@ -246,7 +262,7 @@ export default function ResultsDeveloppe(props) {
                 </table>
             </div> */}
 
-            <div className="cardHeader" style={{marginLeft:'23%'}}>
+            <div className="cardHeader" style={{ marginLeft: '23%' }}>
                 <div style={{ width: '600px', margin: '0 auto', alignItems: 'center', alignContent: 'center', textAlign: 'center' }}> <h2 style={{ color: 'white', alignContent: 'center', alignItems: 'center' }}>{props.nom}</h2></div>
                 <table>
                     <thead>
@@ -260,7 +276,7 @@ export default function ResultsDeveloppe(props) {
                         <tr>
                             <td style={{ width: '500px' }}>période de persistance :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-                            <td  align='right'>{props.persistance} ans</td>
+                            <td align='right'>{props.persistance} ans</td>
                         </tr>
                         <tr>
                             <td>taux d'actualisation :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -271,7 +287,7 @@ export default function ResultsDeveloppe(props) {
                         <tr>
                             <td><h4 style={{ color: 'white' }}>COUT GLOBAL :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></td>
 
-                            <td  align='right'><h2 style={{ color: 'white' }}>{totalProject} XCFA</h2></td>
+                            <td align='right'><h2 style={{ color: 'white' }}>{totalProject} XCFA</h2></td>
                         </tr>
 
                     </tbody>

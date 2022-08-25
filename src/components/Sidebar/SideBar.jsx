@@ -291,7 +291,7 @@ const SideBar = ({ children, ...props }) => {
           </section>
         </motion.div>
 
-        <main style={{ backgroundImage: "url('../shared/pngegg.png')", backgroundRepeat: 'no-repeat',backgroundSize:'50% 50%',backgroundPosition: 'top left' }}>{children}
+        <main style={{ backgroundImage: "url('../shared/pngegg.png')", backgroundRepeat: 'no-repeat',backgroundSize:'50% 50%',backgroundPosition: '-20px left' }}>{children}
         <div>
           
         </div>
