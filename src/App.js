@@ -1,6 +1,6 @@
 import "./App.css";
 import SideBar from "./components/Sidebar/SideBar";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, HashRouter } from "react-router-dom";
 
 import InfoProject from "./pages/InfoProject";
 import Settings from "./pages/Settings";
@@ -136,7 +136,7 @@ const [disableSidebar, setdisableSidebar] = React.useState(true)
 
   return (
 
-    <Router>
+    <HashRouter>
 
 
       <SideBar showAppBar={showAppBar} disableSidebar={disableSidebar} >
@@ -214,7 +214,7 @@ console.log('props.seteclairage', eclairage);
 
         </Routes>
       </SideBar>
-    </Router>
+    </HashRouter>
   );
 }
 

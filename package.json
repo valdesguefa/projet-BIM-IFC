@@ -2,7 +2,7 @@
   "name": "react-side-bar",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://valdesguefa.github.io/projet-BIM-IFC",
+  "homepage": "https://valdesguefa.github.io/projet-BIM-IFC/",
   "dependencies": {
     "@date-io/jalaali": "^2.14.0",
     "@emotion/react": "^11.10.0",
