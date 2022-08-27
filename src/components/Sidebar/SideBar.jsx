@@ -264,7 +264,7 @@ const SideBar = ({ children, ...props }) => {
               }
 
               return (
-                <Link
+                <NavLink
                   to={route.path}
                   key={route.name}
                   className="link"
@@ -285,13 +285,13 @@ const SideBar = ({ children, ...props }) => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </Link>
+                </NavLink>
               );
             })}
           </section>
         </motion.div>
 
-        <main style={{ backgroundImage: "url('../shared/pngegg.png')", backgroundRepeat: 'no-repeat',backgroundSize:'50% 50%',backgroundPosition: '-20px left' }}>{children}
+        <main style={{ backgroundImage: "url('../shared/pngegg.png')", backgroundRepeat: 'no-repeat',backgroundSize:'100%',backgroundPosition: 'center' }}>{children}
         <div>
           
         </div>

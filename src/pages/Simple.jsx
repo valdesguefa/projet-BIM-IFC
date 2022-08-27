@@ -29,9 +29,10 @@ export default function Simple(props) {
   }
 */
 
-useEffect(() => {
-  props.setshowAppBar(false)
-}, [])
+  useEffect(() => {
+    props.setdisableSidebar(false)
+    props.setshowAppBar(false)
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +74,7 @@ useEffect(() => {
       <div className='forms'>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="titleForms">
-            Cycle de vie simplifié  (CCVs)
+            Coût de cycle de vie simplifié  (CCVs)
           </div>
           <div style={{ marginTop: '-30px' }}>
             <TextField

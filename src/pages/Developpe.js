@@ -231,19 +231,20 @@ export default function Developpe(props) {
     ])
 
     React.useEffect(() => {
+        props.setdisableSidebar(false)
         props.setshowAppBar(true)
 
-      //  window.location.reload(false)
+        //  window.location.reload(false)
 
     }, [])
 
 
     React.useEffect(() => {
         props.setconstruction(construction);
-             props.setcompose(compose);
-             props.setfonction(fonction);
-             props.setprestation(prestation)
-    }, [construction , compose, fonction, prestation])
+        props.setcompose(compose);
+        props.setfonction(fonction);
+        props.setprestation(prestation)
+    }, [construction, compose, fonction, prestation])
 
     //notif
     const [openNotif, setOpenNotif] = React.useState(false);
@@ -471,13 +472,13 @@ export default function Developpe(props) {
 
 
                             for (let obj of tabCompose) {
-                                if ((obj.id === idParent.compo)&&(item.unite !== '')) {
+                                if ((obj.id === idParent.compo) && (item.unite !== '')) {
                                     obj.ptc = obj.ptc + ptc1
                                 }
                             }
 
                             for (let obj of tabConstruction) {
-                                if ((obj.id === idParent.constr)&&(item.unite !== '')) {
+                                if ((obj.id === idParent.constr) && (item.unite !== '')) {
                                     obj.ptc = obj.ptc + ptc1
                                 }
                             }
@@ -496,7 +497,7 @@ export default function Developpe(props) {
                             setcompose(tab)
 
                             for (let obj of tabConstruction) {
-                                if ((obj.id === idParent.constr)&&(item.unite !== '')) {
+                                if ((obj.id === idParent.constr) && (item.unite !== '')) {
                                     obj.ptc = obj.ptc + ptc1
                                 }
                             }

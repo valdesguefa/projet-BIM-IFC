@@ -7,7 +7,7 @@ export default function IfcConfig(props) {
     const [open, setopen] = useState(false)
 
     useState(()=>{
-
+        props.setdisableSidebar(false)
     },[])
 
     return (

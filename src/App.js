@@ -145,18 +145,18 @@ const [disableSidebar, setdisableSidebar] = React.useState(true)
           <Route path="/" element={<Debut setdisableSidebar={setdisableSidebar}/>} />
 
           {/* <Route path="/" element={<AppComp />} /> */}
-          <Route path="/info" element={<InfoProject setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} setcheckedDeveloppe={setcheckedDeveloppe} checkedSimple={checkedSimple} setcheckedSimple={setcheckedSimple} nom={nom} setnom={setnom} constructDate={constructDate} setconstructDate={setconstructDate} constructionArea={constructionArea} setconstructionArea={setconstructionArea} nature={nature} setnature={setnature} />} />
+          <Route path="/info" element={<InfoProject setdisableSidebar={setdisableSidebar} setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} setcheckedDeveloppe={setcheckedDeveloppe} checkedSimple={checkedSimple} setcheckedSimple={setcheckedSimple} nom={nom} setnom={setnom} constructDate={constructDate} setconstructDate={setconstructDate} constructionArea={constructionArea} setconstructionArea={setconstructionArea} nature={nature} setnature={setnature} />} />
 
-          <Route path="/settings" element={<Settings checkedDeveloppe={checkedDeveloppe} setshowAppBar={setshowAppBar} actualisation={actualisation} setactualisation={setactualisation} setinflation={setinflation} inflation={inflation} persistance={persistance} setpersistance={setpersistance} actualisationReel={actualisationReel} setactualisationReel={setactualisationReel} />} />
+          <Route path="/settings" element={<Settings setdisableSidebar={setdisableSidebar} checkedDeveloppe={checkedDeveloppe} setshowAppBar={setshowAppBar} actualisation={actualisation} setactualisation={setactualisation} setinflation={setinflation} inflation={inflation} persistance={persistance} setpersistance={setpersistance} actualisationReel={actualisationReel} setactualisationReel={setactualisationReel} />} />
 
           {/* <Route path="/messages" element={<Messages />} />
           <Route path="/analytics" element={<Analytics />} /> 
           */}
           <Route path="/ccv" element={<LifeCycle />} />
 
-          <Route path="/ccv/simple" element={<Simple setshowAppBar={setshowAppBar} persistance={persistance} actualisationReel={actualisationReel} actualisation={actualisation} dementellement={dementellement} setdementellement={setdementellement} utilisation={utilisation} setutilisation={setutilisation} investissement={investissement} setinvestissement={setinvestissement} />} />
+          <Route path="/ccv/simple" element={<Simple setdisableSidebar={setdisableSidebar} setshowAppBar={setshowAppBar} persistance={persistance} actualisationReel={actualisationReel} actualisation={actualisation} dementellement={dementellement} setdementellement={setdementellement} utilisation={utilisation} setutilisation={setutilisation} investissement={investissement} setinvestissement={setinvestissement} />} />
 
-          <Route path="/ccv/developpe/Construction" element={<Developpe setshowAppBar={setshowAppBar} setconstruction={setconstruction} setfonction={setfonction} setcompose={setcompose} setprestation={setprestation} />} />
+          <Route path="/ccv/developpe/Construction" element={<Developpe setdisableSidebar={setdisableSidebar} setshowAppBar={setshowAppBar} setconstruction={setconstruction} setfonction={setfonction} setcompose={setcompose} setprestation={setprestation} />} />
 
           {/*
 console.log('props.seteclairage', eclairage);
@@ -167,17 +167,17 @@ console.log('props.seteclairage', eclairage);
     console.log('  props.setsysteme', systeme)
         */}
         
-          <Route path="/ccv/developpe/Utilisation" element={<Utilisation setsysteme={setsysteme} setappareil={setappareil} setequipement={setequipement} setfiltre={setfiltre} setchauffe={setchauffe} seteclairage={seteclairage} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+          <Route path="/ccv/developpe/Utilisation" element={<Utilisation setdisableSidebar={setdisableSidebar} setsysteme={setsysteme} setappareil={setappareil} setequipement={setequipement} setfiltre={setfiltre} setchauffe={setchauffe} seteclairage={seteclairage} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
 
-          <Route path="/ccv/developpe/maintenance_remplacement" element={<Maintenance setconstruction={setconstructionMaintenance} setfonction={setfonctionMaintenance} setcompose={setcomposeMaintenance} setprestation={setprestationMaintenance} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+          <Route path="/ccv/developpe/maintenance_remplacement" element={<Maintenance setdisableSidebar={setdisableSidebar} setconstruction={setconstructionMaintenance} setfonction={setfonctionMaintenance} setcompose={setcomposeMaintenance} setprestation={setprestationMaintenance} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
 
-          <Route path="/ccv/developpe/Externalite" element={<Externalites setexternalites={setexternalites} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+          <Route path="/ccv/developpe/Externalite" element={<Externalites setdisableSidebar={setdisableSidebar} setexternalites={setexternalites} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
 
-          <Route path="/ccv/developpe/Dementellement" element={<Demmentellement setexternalitesDementellement={setexternalitesDementellement} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
+          <Route path="/ccv/developpe/Dementellement" element={<Demmentellement setdisableSidebar={setdisableSidebar} setexternalitesDementellement={setexternalitesDementellement} setshowAppBar={setshowAppBar} persistance={persistance} actualisation={actualisation} actualisationReel={actualisationReel} />} />
 
 
 
-          <Route path="/ccv/developpe/ifcConfig" element={<IfcConfig setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
+          <Route path="/ccv/developpe/ifcConfig" element={<IfcConfig setdisableSidebar={setdisableSidebar} setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
             actualisation={actualisation} inflation={inflation} persistance={persistance} actualisationReel={actualisationReel}
             dementellement={dementellement} utilisation={utilisation} investissement={investissement}
 
@@ -193,7 +193,7 @@ console.log('props.seteclairage', eclairage);
             totalProjects={totalProjects}
           />} />
 
-          <Route path="/results" element={<Results setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
+          <Route path="/results" element={<Results setdisableSidebar={setdisableSidebar} setshowAppBar={setshowAppBar} checkedDeveloppe={checkedDeveloppe} checkedSimple={checkedSimple} nom={nom} constructDate={constructDate} constructionArea={constructionArea} nature={nature}
             actualisation={actualisation} inflation={inflation} persistance={persistance} actualisationReel={actualisationReel}
             dementellement={dementellement} utilisation={utilisation} investissement={investissement}
 
@@ -210,7 +210,7 @@ console.log('props.seteclairage', eclairage);
 
           />} />
 
-          <Route path="*" element={<Notfound setshowAppBar={setshowAppBar} />} />
+          <Route path="*" element={<Notfound setshowAppBar={setshowAppBar} setdisableSidebar={setdisableSidebar} />} />
 
         </Routes>
       </SideBar>

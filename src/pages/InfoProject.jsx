@@ -59,6 +59,7 @@ export default function InfoProject(props) {
   };
 
   useEffect(() => {
+    props.setdisableSidebar(false)
     props.setshowAppBar(false)
   }, [])
 
@@ -121,7 +122,7 @@ export default function InfoProject(props) {
         <div className='form'>
           <form onSubmit={(e) => nextPage(e)}>
             <div className="titleForm">
-              projet
+              INFORMATIONS
             </div>
             <div style={{ marginTop: '-30px' }}>
               <TextField
@@ -212,8 +213,11 @@ export default function InfoProject(props) {
 
                   <Checkbox
                     checked={props.checkedSimple}
-                    disabled={props.checkedDeveloppe}
-                    onChange={(e) => props.setcheckedSimple(e.target.checked)}
+                  
+                    onChange={(e) => {
+                      props.setcheckedDeveloppe(false);
+                      props.setcheckedSimple(e.target.checked)
+                    }}
                     inputProps={{ 'aria-label': 'controlled' }}
                   />
                 </div>
@@ -223,8 +227,11 @@ export default function InfoProject(props) {
                   <Checkbox
 
                     checked={props.checkedDeveloppe}
-                    disabled={props.checkedSimple}
-                    onChange={(e) => props.setcheckedDeveloppe(e.target.checked)}
+                    onChange={(e) => {
+                      props.setcheckedDeveloppe(e.target.checked);
+                      props.setcheckedSimple(false)
+                    }
+                    }
                     inputProps={{ 'aria-label': 'controlled' }}
                   />
                 </div>

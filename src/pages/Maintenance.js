@@ -124,13 +124,13 @@ export default function Maintenance(props) {
             id: 'A.1',
             quantite: 0,
             unite: '',
-            tm: 7,
-            txm: 20,
-            cm: 1,
+            tm: 1,
+            txm: 0,
+            cm: 0,
             cmg: 0,
-            tr: 12,
-            txr: 100,
-            cr: 1,
+            tr: 1,
+            txr: 0,
+            cr: 0,
             crg: 0,
             cmrtg: 0
 
@@ -140,13 +140,13 @@ export default function Maintenance(props) {
             id: 'A.2',
             quantite: 0,
             unite: '',
-            tm: 7,
-            txm: 20,
-            cm: 1,
+            tm: 1,
+            txm: 0,
+            cm: 0,
             cmg: 0,
-            tr: 12,
-            txr: 100,
-            cr: 1,
+            tr: 1,
+            txr: 0,
+            cr: 0,
             crg: 0,
             cmrtg: 0
 
@@ -156,13 +156,13 @@ export default function Maintenance(props) {
             id: 'A.3',
             quantite: 0,
             unite: '',
-            tm: 7,
-            txm: 20,
-            cm: 1,
+            tm: 1,
+            txm: 0,
+            cm: 0,
             cmg: 0,
-            tr: 12,
-            txr: 100,
-            cr: 1,
+            tr: 1,
+            txr: 0,
+            cr: 0,
             crg: 0,
             cmrtg: 0
 
@@ -373,6 +373,7 @@ export default function Maintenance(props) {
     ])
 
     React.useEffect(() => {
+        props.setdisableSidebar(false)
         props.setshowAppBar(true)
     }, [])
 
@@ -380,6 +381,8 @@ export default function Maintenance(props) {
     const [openNotif, setOpenNotif] = React.useState(false);
     const [message, setmessage] = React.useState('');
     const [errorType, seterrorType] = React.useState('');
+    const [operate, setoperate] = React.useState(false);
+
 
     const handleCloseNotif = (event, reason) => {
         if (reason === 'clickaway') {
@@ -397,13 +400,13 @@ export default function Maintenance(props) {
             id: '',
             quantite: 0,
             unite: '',
-            tm: 7,
-            txm: 20,
-            cm: 1,
+            tm: 1,
+            txm: 0,
+            cm: 0,
             cmg: 0,
-            tr: 12,
-            txr: 100,
-            cr: 1,
+            tr: 1,
+            txr: 0,
+            cr: 0,
             crg: 0,
             cmrtg: 0
         }
@@ -531,23 +534,26 @@ export default function Maintenance(props) {
     //     setitem({ ...item, cmg: d })
     // }, [item.txm, item.quantite, item.cm, item.tm, props])
 
-    React.useEffect(() => {
-        var b = item.txr / 100
+    // React.useEffect(() => {
+    //    // if ((item.tr !== null) && (item.tr !== undefined) && (item.tr !== 0)) {
+    //    if(operate){  
+    //    var b = item.txr / 100
 
-        var a = item.txm / 100
-        var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+    //         var a = item.txm / 100
+    //         var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
 
-        setitem({ ...item, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr) })
-    }, [item.txr, item.quantite, item.cr, item.tr])
+    //         setitem({ ...item, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr) })
+    //     }
+    // }, [item.txr, item.quantite, item.cr, item.tr])
 
-    React.useEffect(() => {
-        var a = item.txm / 100
-        var b = item.txr / 100
-        console.log('that is value of b', b)
-        var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
-        var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
-        setitem({ ...item, cmrtg: c + f })
-    }, [item.cmg, item.crg])
+    // React.useEffect(() => {
+    //     var a = item.txm / 100
+    //     var b = item.txr / 100
+    //     console.log('that is value of b', b)
+    //     var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+    //     var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+    //     setitem({ ...item, cmrtg: c + f })
+    // }, [item.cmg, item.crg])
 
 
     React.useEffect(() => {
@@ -567,6 +573,9 @@ export default function Maintenance(props) {
                     <form onSubmit={(event) => {
                         event.preventDefault();
 
+                        setoperate(true)
+
+
                         var tab = [];
                         var tabFunct = fonction
                         var tabCompose = compose
@@ -583,33 +592,53 @@ export default function Maintenance(props) {
                         // console.log('item.quantite',item.quantite);
                         // console.log('item.pu',item.pu);
                         // console.log('ptc',ptc1)
-                        var it = {
-                            designation: item.designation,
-                            id: '',
-                            quantite: item.quantite,
-                            unite: item.unite,
-                            tm: 7,
-                            txm: 20,
-                            cm: 1,
-                            cmg: 0,
-                            tr: 12,
-                            txr: 100,
-                            cr: 1,
-                            crg: 0,
-                            cmrtg: 0
-                        }
-                        setitem(it)
+                        // var it = {
+                        //     designation: item.designation,
+                        //     id: '',
+                        //     quantite: item.quantite,
+                        //     unite: item.unite,
+                        //     tm: 7,
+                        //     txm: 20,
+                        //     cm: 1,
+                        //     cmg: 0,
+                        //     tr: 12,
+                        //     txr: 100,
+                        //     cr: 1,
+                        //     crg: 0,
+                        //     cmrtg: 0
+                        // }
+                        // setitem(it)
                         // console.log('submit is ready item!', item);
                         // console.log('submit is ready it!', it);
-                        console.log('snkdlfkv jldkfj vlskfj vls', idParent)
+                        // console.log('idParent snkdlfkv jldkfj vlskfj vls', idParent)
+                        // console.log('name snkdlfkv jldkfj vlskfj vls', name)
+                        // console.log('ptc1 snkdlfkv jldkfj vlskfj vls', ptc1)
+                        // console.log('tabFunct snkdlfkv jldkfj vlskfj vls', tabFunct)
+                        // console.log('tabCompose snkdlfkv jldkfj vlskfj vls', tabCompose)
+                        // console.log('tabConstruction snkdlfkv jldkfj vlskfj vls', tabConstruction)
+                        // // var tabFunct = fonction
+                        // var tabCompose = compose
+                        // var tabConstruction = construction
                         if (name === 'prestation') {
+                            console.log('prestation')
                             len = prestation.filter((elt) => elt.id.includes(idParent.fun)).length + 1
                             val = idParent.fun + '.' + len
 
                             console.log('taille des prestations ', len)
                             tab = Object.assign([], prestation);
 
-                            tab.push({ ...item, id: val });
+
+                            //-----------
+                            b = item.txr / 100
+
+                            a = item.txm / 100
+                            var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+
+                            var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+                            var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            tab.push({ ...item, id: val, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr), cmrtg: c + f })
+                            //----------------          
+
                             setprestation(tab)
 
 
@@ -636,24 +665,36 @@ export default function Maintenance(props) {
 
                         }
                         else if (name === 'fonction') {
+                            console.log('fonction')
                             len = fonction.filter((elt) => elt.id.includes(idParent.compo)).length + 1
                             val = idParent.compo + '.' + len
 
                             console.log('taille des fonctions ', len)
                             tab = Object.assign([], fonction);
 
-                            tab.push({ ...item, id: val });
+
+                            //-----------
+                            b = item.txr / 100
+
+                            a = item.txm / 100
+                            var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+
+                            var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+                            var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            tab.push({ ...item, id: val, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr), cmrtg: c + f })
+                            //----------------          
+
                             setfonction(tab)
 
 
                             for (let obj of tabCompose) {
-                                if ((obj.id === idParent.compo)&&(item.unite !== '')) {
+                                if ((obj.id === idParent.compo) && (item.unite !== '')) {
                                     obj.cmrtg = obj.cmrtg + ptc1
                                 }
                             }
 
                             for (let obj of tabConstruction) {
-                                if ((obj.id === idParent.constr)&&(item.unite !== '')) {
+                                if ((obj.id === idParent.constr) && (item.unite !== '')) {
                                     obj.cmrtg = obj.cmrtg + ptc1
                                 }
                             }
@@ -662,20 +703,36 @@ export default function Maintenance(props) {
                         }
                         //---------------------------
                         else if (name === 'compose') {
+                            console.log('compose')
                             len = compose.filter((elt) => elt.id.includes(idParent.constr)).length + 1
                             val = idParent.constr + '.' + len
-
+                            // console.log('that is item', item);
                             console.log('taille des composes ', len)
                             tab = Object.assign([], compose);
 
-                            tab.push({ ...item, id: val });
+
+                            b = item.txr / 100
+
+                            a = item.txm / 100
+                            var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+
+                            var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+                            var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            tab.push({ ...item, id: val, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr), cmrtg: c + f })
+
+
+
                             setcompose(tab)
+                            console.log('tab', tab);
+                            console.log('that is compose.len', compose.len);
 
                             for (let obj of tabConstruction) {
-                                if ((obj.id === idParent.constr)&&(item.unite !== '')) {
+                                console.log('termine !!!', obj)
+                                if ((obj.id === idParent.constr) && (item.unite !== '')) {
                                     obj.cmrtg = obj.cmrtg + ptc1
                                 }
                             }
+
                             setconstruction(tabConstruction)
                         }
 
@@ -689,17 +746,17 @@ export default function Maintenance(props) {
                             id: '',
                             quantite: 0,
                             unite: '',
-                            tm: 7,
-                            txm: 20,
-                            cm: 1,
+                            tm: 1,
+                            txm: 0,
+                            cm: 0,
                             cmg: 0,
-                            tr: 12,
-                            txr: 100,
-                            cr: 1,
+                            tr: 1,
+                            txr: 0,
+                            cr: 0,
                             crg: 0,
                             cmrtg: 0
                         })
-
+                        console.log('fin')
                     }}>
 
                         <TextField
@@ -753,6 +810,11 @@ export default function Maintenance(props) {
                             onChange={(e) => setitem({ ...item, tm: e.target.value })}
                             required={name === 'prestation' ? true : false}
                             id="tm"
+                            defaultValue={1}
+                            inputProps={{
+                                min: 1
+                            }}
+
                             label="TM"
                             type="decimal"
                             // helperText='Prix Unitaire'
@@ -795,6 +857,10 @@ export default function Maintenance(props) {
                             onChange={(e) => setitem({ ...item, tr: e.target.value })}
                             required={name === 'prestation' ? true : false}
                             id="tr"
+                            defaultValue={1}
+                            inputProps={{
+                                min: 1
+                            }}
                             label="TR"
                             type="decimal"
                             // helperText='Prix Unitaire'
@@ -907,7 +973,63 @@ export default function Maintenance(props) {
                                     <TableCell align="left">{row.cmrtg.toFixed(3)}</TableCell>
                                     <TableCell align="left"><DeleteIcon color="primary" titleAccess={`supprimer un(e) ${row.designation}`} onClick={(designa) => {
                                         var tab = construction.filter((elt) => elt.id !== row.id)
+                                        if(row.designation === 'INFRASTRUCTURE'){
+                                            tab = [...tab, {
+                                                designation: 'INFRASTRUCTURE',
+                                                id: 'A.1',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+                                       else if(row.designation === 'SUPERSTRUCTURE'){
+                                            tab = [...tab, {
+                                                designation: 'SUPERSTRUCTURE',
+                                                id: 'A.2',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+                                        else if(row.designation === 'EQUIPEMENTS'){
+                                            tab = [...tab, {
+                                                designation: 'EQUIPEMENTS',
+                                                id: 'A.3',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+
+                                        console.log('that is contruction tab',tab)
                                         setconstruction(tab)
+//   designation: 'INFRASTRUCTUR
+//   designation: 'SUPERSTRUCTUR
+//   designation: 'EQUIPEMENTS',
 
                                         var tab = compose.filter((elt) => !elt.id.includes(row.id))
                                         setcompose(tab)
@@ -971,7 +1093,7 @@ export default function Maintenance(props) {
                                                 setmessage('Suppression effectué avec succes ')
                                                 //  console.log('table ++++++++', compose)
 
-                                                 reducePtc(compo.cmrtg)
+                                                reducePtc(compo.cmrtg)
                                             }
                                             } />
                                                 <EditIcon color="primary" titleAccess={`Modifier un(e) ${compo.designation}`} style={{ marginLeft: '10px' }} onClick={() => {
@@ -1092,12 +1214,12 @@ export default function Maintenance(props) {
                                                         <AddCircleIcon color="primary" titleAccess={`Ajouter une prestation`} style={{ marginLeft: '10px' }} onClick={() => {
                                                             //handleClickOpen(row.designation);
                                                             if (fonct.unite === '') {
-                                                                handleClickOpen();
+
                                                                 // console.log('fkjskdjflksjldfkjsnvlksdjnvlksjfd')
                                                                 setname('prestation')
                                                                 setidParent({ constr: row.id, compo: compo.id, fun: fonct.id }
                                                                 )
-
+                                                                handleClickOpen();
                                                             }
                                                             else {
                                                                 setOpenNotif(true);
@@ -1136,11 +1258,12 @@ export default function Maintenance(props) {
                                             <TableCell align="left"><AddCircleIcon color="primary" titleAccess={`Ajouter une prestation`} style={{ marginLeft: '10px' }} onClick={() => {
                                                 //handleClickOpen(row.designation);
                                                 if (compo.unite === '') {
-                                                    handleClickOpen();
+
                                                     // console.log('fkjskdjflksjldfkjsnvlksdjnvlksjfd')
                                                     setname('fonction')
                                                     setidParent({ constr: row.id, compo: compo.id, fun: '' }
                                                     )
+                                                    handleClickOpen();
                                                 }
                                                 else {
                                                     setOpenNotif(true);
@@ -1181,11 +1304,12 @@ export default function Maintenance(props) {
                                     <TableCell align="left"><AddCircleIcon color="primary" titleAccess={`Ajouter une prestation`} style={{ marginLeft: '10px' }} onClick={() => {
                                         //handleClickOpen(row.designation);
                                         if (row.unite === '') {
-                                            handleClickOpen();
+
                                             // console.log('fkjskdjflksjldfkjsnvlksdjnvlksjfd')
                                             setname('compose')
                                             setidParent({ constr: row.id, compo: '', fun: '' }
                                             )
+                                            handleClickOpen();
                                         }
                                         else {
                                             setOpenNotif(true);

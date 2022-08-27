@@ -85,6 +85,12 @@ main {
   border-right: 4px solid white;
   background: rgb(45, 51, 89);
 }
+
+.active1 {
+  border-right: 2px solid white;
+  background-color: rgb(45, 51, 89);
+  background-size: 50px;
+}
 .link_text {
   white-space: nowrap;
   font-size: 15px;

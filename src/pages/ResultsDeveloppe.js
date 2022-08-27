@@ -88,7 +88,7 @@ export default function ResultsDeveloppe(props) {
             }
         }
         settotalConstruction(a.toFixed(3))
-      //  settotalProject(totalProject + a)
+        //  settotalProject(totalProject + a)
     }, [props.construction, props.compose, props.fonction, props.prestation])
 
 
@@ -115,7 +115,7 @@ export default function ResultsDeveloppe(props) {
             a = a + obj.cmrtg
         }
         settotalMaintenance(a)
-     //   settotalProject(totalProject + a)
+        //   settotalProject(totalProject + a)
 
     }, [props.constructionMaintenance])
 
@@ -130,7 +130,7 @@ export default function ResultsDeveloppe(props) {
             //ActuMR(obj.cex * obj.quantite, props.actualisation, props.actualisationReel / 100, props.persistance, obj.tex)
         }
         settotalDementellement(a.toFixed(3))
-      //  settotalProject(totalProject + a)
+        //  settotalProject(totalProject + a)
     }, [props.externalitesDementellement])
 
     useEffect(() => {
@@ -139,7 +139,7 @@ export default function ResultsDeveloppe(props) {
 
             a = a + ActuMR(obj.cex * obj.quantite, props.actualisation, props.actualisationReel / 100, props.persistance, obj.tex)
         }
-     //   settotalProject(totalProject + a)
+        //   settotalProject(totalProject + a)
         settotalExternalite(a.toFixed(3))
 
     }, [props.externalites])
@@ -209,19 +209,19 @@ export default function ResultsDeveloppe(props) {
     }, [totalChauffe, totalEclairage, totalFiltre, totalEquipement])
 
     useEffect(() => {
-      //  settotalProject(totalProject + totalEnergie + totalAppareil + totalSysteme)
+        //  settotalProject(totalProject + totalEnergie + totalAppareil + totalSysteme)
         settotalUtilisation(totalEnergie + totalAppareil + totalSysteme)
 
     }, [totalEnergie, totalAppareil, totalSysteme])
 
     useEffect(() => {
         var b = 0
-        b = parseFloat(totalDementellement) + parseFloat(totalExternalite) + parseFloat(totalUtilisation) + parseFloat(totalConstruction) +  parseFloat(totalMaintenance)
-       
-            props.settotalProjects(b.toFixed(3))//(parseFloat(b).toFixed(3))
-            settotalProject(b.toFixed(3))//(parseFloat(b).toFixed(3))
-  
-    
+        b = parseFloat(totalDementellement) + parseFloat(totalExternalite) + parseFloat(totalUtilisation) + parseFloat(totalConstruction) + parseFloat(totalMaintenance)
+
+        props.settotalProjects(b.toFixed(3))//(parseFloat(b).toFixed(3))
+        settotalProject(b.toFixed(3))//(parseFloat(b).toFixed(3))
+
+
         // console.log('totalDementellement', totalDementellement)
         // console.log('totalExternalite', totalExternalite)
         // console.log('totalUtilisation', totalUtilisation)
@@ -232,7 +232,7 @@ export default function ResultsDeveloppe(props) {
 
     useEffect(() => {
         props.settotalProjects(totalProject)
-        console.log('props.settotalProjects(totalProject)',totalProject)
+        console.log('props.settotalProjects(totalProject)', totalProject)
     }, [totalProject])
 
     return (
@@ -294,76 +294,77 @@ export default function ResultsDeveloppe(props) {
                 </table>
             </div>
 
+            <div className='cards'>
 
-            <div className="card1Dev" onClick={() => navigate("/", { replace: true })}>
-                <h3> Le projet</h3>
+                <div className="card1Dev" onClick={() => navigate("/", { replace: true })}>
+                    <h3> Le projet</h3>
 
-                {/* <p className="small">Card description with lots of great facts and interesting details.</p>
+                    {/* <p className="small">Card description with lots of great facts and interesting details.</p>
                  */}
 
-                <p>              Nom	:	{props.nom}</p>
-                <br />
-                <p>          Nature	:	{props.nature}</p>
-                <br />
+                    <p>              Nom	:	{props.nom}</p>
+                    <br />
+                    <p>          Nature	:	{props.nature}</p>
+                    <br />
 
-                <p>Date de livraison	:		{props.constructDate}</p>
-                <br />
+                    <p>Date de livraison	:		{props.constructDate}</p>
+                    <br />
 
-                <p>          Surface	:	{props.constructionArea} m²</p>
-                <br />
+                    <p>          Surface	:	{props.constructionArea} m²</p>
+                    <br />
 
-                <p>  Mode d'analyse	:	{props.checkedSimple ? 'Global' : 'Détaille'}	</p>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                    <p>  Mode d'analyse	:	{props.checkedSimple ? 'Global' : 'Détaille'}	</p>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card2Dev" onClick={() => navigate("/settings", { replace: true })}>
-                <h3>   Paramètres généraux</h3>
-                <p>   Période d'analyse	:	{props.persistance} ans</p>
-                <br />
+                <div className="card2Dev" onClick={() => navigate("/settings", { replace: true })}>
+                    <h3>   Paramètres généraux</h3>
+                    <p>   Période d'analyse	:	{props.persistance} ans</p>
+                    <br />
 
-                <p>               Variation	:	{props.actualisation} ans</p>
-                <br />
+                    <p>               Variation	:	{props.actualisation} ans</p>
+                    <br />
 
-                <p> Taux d'actualisation reel :	{props.actualisationReel}%</p>
-                <br />
+                    <p> Taux d'actualisation reel :	{props.actualisationReel}%</p>
+                    <br />
 
-                <p>Taux d'inflation général	:	{props.inflation}%</p>
+                    <p>Taux d'inflation général	:	{props.inflation}%</p>
 
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Construction", { replace: true })}>
-                <h3>   Construction</h3>
+                <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Construction", { replace: true })}>
+                    <h3>   Construction</h3>
 
-                {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
+                    {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
 
-                <div style={{ overflow: 'auto' }}>
-                    <table>
-                        <thead>
-                            <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                            <th>PT</th>
-                        </thead>
-                        <tbody>
-                            {
-                                props.construction.map((elt) => {
+                    <div style={{ overflow: 'auto' }}>
+                        <table>
+                            <thead>
+                                <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>PT</th>
+                            </thead>
+                            <tbody>
+                                {
+                                    props.construction.map((elt) => {
 
-                                    return (
-                                        <tr>
-                                            <td className="small">{elt.designation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td className="small">{elt.ptc.toFixed(3)}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                        return (
+                                            <tr>
+                                                <td className="small">{elt.designation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td className="small">{elt.ptc.toFixed(3)}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
 
-                            {/* 
+                                {/* 
                             {
                                 props.fonction.filter((elt) => elt.pu !== 0).map((elt) => {
 
@@ -385,53 +386,53 @@ export default function ResultsDeveloppe(props) {
                                     )
                                 })
                             } */}
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
 
-                            <tr>
-                                <td className="small">{<strong>Total</strong>}</td>
-                                <td className="small"><strong>{totalConstruction}</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td className="small">{<strong>Total</strong>}</td>
+                                    <td className="small"><strong>{totalConstruction}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                </div>
+                    </div>
 
-                <div className="dimmer"></div>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                    <div className="dimmer"></div>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card3Dev" onClick={() => navigate("/ccv/developpe/maintenance_remplacement", { replace: true })}>
-                <h3 style={{ display: 'inline' }}>   Maintenance ET Remplacement</h3>
+                <div className="card3Dev" onClick={() => navigate("/ccv/developpe/maintenance_remplacement", { replace: true })}>
+                    <h3 style={{ display: 'inline' }}>   Maintenance ET Remplacement</h3>
 
-                {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
-                <div style={{ overflow: 'auto' }}>
-                    <table>
-                        <thead>
-                            <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                            {/* <th>CMRtg</th> */}
-                            <th>PT</th>
-                        </thead>
-                        <tbody>
-                            {
-                                props.constructionMaintenance.map((elt) => {
+                    {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
+                    <div style={{ overflow: 'auto' }}>
+                        <table>
+                            <thead>
+                                <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                {/* <th>CMRtg</th> */}
+                                <th>PT</th>
+                            </thead>
+                            <tbody>
+                                {
+                                    props.constructionMaintenance.map((elt) => {
 
-                                    return (
-                                        <tr>
-                                            <td className="small">{elt.designation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td className="small">{elt.cmrtg.toFixed(3)}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                        return (
+                                            <tr>
+                                                <td className="small">{elt.designation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td className="small">{elt.cmrtg.toFixed(3)}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
 
 
-                            {/* {
+                                {/* {
                                 props.fonctionMaintenance.filter((elt) => elt.unite !== '').map((elt) => {
 
                                     return (
@@ -454,22 +455,22 @@ export default function ResultsDeveloppe(props) {
                             } */}
 
 
-                        </tbody>
-                    </table>
-                </div>
-                <strong>Total : {totalMaintenance.toFixed(3)}</strong>
-                <div className="dimmer"></div>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                            </tbody>
+                        </table>
+                    </div>
+                    <strong>Total : {totalMaintenance.toFixed(3)}</strong>
+                    <div className="dimmer"></div>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Dementellement", { replace: true })}>
-                <h3 style={{ display: 'inline' }}>   Démentellement</h3>
+                <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Dementellement", { replace: true })}>
+                    <h3 style={{ display: 'inline' }}>   Démentellement</h3>
 
-                {/* <div style={{ overflow: 'overlay', height: '230px', marginTop: '5px' }}>
+                    {/* <div style={{ overflow: 'overlay', height: '230px', marginTop: '5px' }}>
                     <table>
                         <thead>
                             <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -492,26 +493,26 @@ export default function ResultsDeveloppe(props) {
                         </tbody>
                     </table>
                 </div> */}
-                <table>
-                    <thead>
-                        <th>  <strong>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
-                        <th>  <strong>{totalDementellement}</strong></th>
-                    </thead>
-                </table>
+                    <table>
+                        <thead>
+                            <th>  <strong>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+                            <th>  <strong>{totalDementellement}</strong></th>
+                        </thead>
+                    </table>
 
-                <div className="dimmer"></div>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                    <div className="dimmer"></div>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Externalite", { replace: true })}>
-                <h3 style={{ display: 'inline' }}>   Externalité</h3>
+                <div className="card3Dev" onClick={() => navigate("/ccv/developpe/Externalite", { replace: true })}>
+                    <h3 style={{ display: 'inline' }}>   Externalité</h3>
 
-                {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
-                {/* <div style={{ overflow: 'overlay', height: '230px', marginTop: '5px' }}>
+                    {/* <p className="small">Card description with lots of great facts and interesting details.</p> */}
+                    {/* <div style={{ overflow: 'overlay', height: '230px', marginTop: '5px' }}>
                     <table>
                         <thead>
                             <th>Désignation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -533,27 +534,27 @@ export default function ResultsDeveloppe(props) {
                         </tbody>
                     </table>
                 </div> */}
-                <table>
-                    <thead>
-                        <th>
-                            <strong>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
-                        </th>
-                        <th>
-                            <strong>{totalExternalite}</strong>
-                        </th>
-                    </thead>
-                </table>
-                { }
-                <div className="dimmer"></div>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                    <table>
+                        <thead>
+                            <th>
+                                <strong>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </th>
+                            <th>
+                                <strong>{totalExternalite}</strong>
+                            </th>
+                        </thead>
+                    </table>
+                    { }
+                    <div className="dimmer"></div>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="card5" onClick={() => navigate("/ccv/developpe/Utilisation", { replace: true })}>
-                {/* <h3 style={{ display: 'inline' }}>   Energie</h3>
+                <div className="card5" onClick={() => navigate("/ccv/developpe/Utilisation", { replace: true })}>
+                    {/* <h3 style={{ display: 'inline' }}>   Energie</h3>
 
                 <div style={{ overflow: 'overlay', height: '230px', marginTop: '10px' }}>
                     <h4>Eclairage</h4>
@@ -694,66 +695,75 @@ export default function ResultsDeveloppe(props) {
                         </tbody>
                     </table>
                 </div> */}
-                <table>
-                    <thead>
-                        <th style={{ paddingLeft: '-20px' }}>type</th>
+                    <h3 style={{ display: 'inline' }}>   Utilisation</h3>
+                    <br />
+                    <table style={{marginTop:'20px'}}>
+                        <thead>
+                            <th style={{ paddingLeft: '-20px' }}>type</th>
 
-                        <th>PT (XCFA)</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><h4>Energie</h4></td>
+                            <th>PT (XCFA)</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
 
-                            <td>{totalEnergie.toFixed(3)}</td>
-                        </tr>
-                        <tr>
+                                <td></td>
+                            </tr>
 
-                            <td style={{ paddingLeft: '25px' }}>Eclairage</td>
-                            <td>{totalEclairage.toFixed(3)}</td>
-                        </tr>
-                        <tr>
+                            <tr>
+                                <td><h4>Energie</h4></td>
 
-                            <td style={{ paddingLeft: '25px' }}>Chauffe Eau</td>
-                            <td>{totalChauffe.toFixed(3)}</td>
-                        </tr>
-                        <tr>
+                                <td>{totalEnergie.toFixed(3)}</td>
+                            </tr>
+                            <tr>
 
-                            <td style={{ paddingLeft: '25px' }}>Filtre a Air</td>
-                            <td>{totalFiltre.toFixed(3)}</td>
-                        </tr>
-                        <tr>
+                                <td style={{ paddingLeft: '25px' }}>Eclairage</td>
+                                <td>{totalEclairage.toFixed(3)}</td>
+                            </tr>
+                            <tr>
 
-                            <td style={{ paddingLeft: '25px' }}>Autre Equipement</td>
-                            <td>{totalEquipement.toFixed(3)}</td>
-                        </tr>
+                                <td style={{ paddingLeft: '25px' }}>Chauffe Eau</td>
+                                <td>{totalChauffe.toFixed(3)}</td>
+                            </tr>
+                            <tr>
 
-                        <tr>
-                            <td ><h4>Appareil</h4></td>
+                                <td style={{ paddingLeft: '25px' }}>Filtre a Air</td>
+                                <td>{totalFiltre.toFixed(3)}</td>
+                            </tr>
+                            <tr>
 
-                            <td>{totalAppareil.toFixed(3)}</td>
-                        </tr>
+                                <td style={{ paddingLeft: '25px' }}>Autre Equipement</td>
+                                <td>{totalEquipement.toFixed(3)}</td>
+                            </tr>
 
-                        <tr>
-                            <td><h4>Systeme d'energie</h4></td>
+                            <tr>
+                                <td ><h4>Appareil</h4></td>
 
-                            <td>{totalSysteme.toFixed(3)}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                                <td>{totalAppareil.toFixed(3)}</td>
+                            </tr>
 
-                        <tr>
-                            <td><h4>Total</h4></td>
-                            <td>{totalUtilisation}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                            <tr>
+                                <td><h4>Systeme d'energie</h4></td>
 
-                <div className="dimmer"></div>
-                <div className="go-corner" href="#">
-                    <div className="go-arrow">
-                        →
+                                <td>{totalSysteme.toFixed(3)}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><h4>Total Utilisation</h4></td>
+                                <td>{totalUtilisation}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div className="dimmer"></div>
+                    <div className="go-corner" href="#">
+                        <div className="go-arrow">
+                            →
+                        </div>
                     </div>
                 </div>
             </div>

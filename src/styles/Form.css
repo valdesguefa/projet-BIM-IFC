@@ -3,9 +3,9 @@
 
 .form{
     width: 30vw;
-    margin-left: 30vw;
+    margin: 0 auto;
     padding: 10vh;
-    height: 60vh;
+    max-height: 65vh;
     background-color: rgb(190, 190, 190); 
     opacity: 0.95;
     margin-top: 15vh;
@@ -15,10 +15,9 @@
 }
 .back{
     background-image: url('../shared/pngegg.png');
-    background-size: '50px 50px';
-    background-size: -220px left;
-    width: 160%;
-    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin:0;
     
 }
 .titleForm{

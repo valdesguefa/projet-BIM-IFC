@@ -316,6 +316,7 @@ export default function Utilisation(props) {
 
 
   React.useEffect(() => {
+    props.setdisableSidebar(false)
     props.setshowAppBar(true)
   }, [])
 

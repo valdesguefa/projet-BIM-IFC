@@ -1,0 +1,127 @@
+import DB from Autodesk.Revit
+
+
+doc = __revit__.ActiveUIDocument.Document
+
+function Actu(Ca, T, a, N) {
+    var n0 = T
+    var CaT = T * Ca
+    var Act = 0
+    while (n0 < N + 1) {
+        var e = Math.pow(1 + a, n0)
+        var Cta = CaT / (e)
+        Act = Act + Cta
+        n0 = n0 + T
+    }
+    return Act
+}
+function ActuMR(Ca, T, a, N, TM) {
+    var m = 0
+    var Nm = 0
+    var ActuMR = 0
+    if (Math.floor(TM / T) === TM / T) {
+        ActuMR = Actu(Ca, TM, a, N)
+    }
+    else {
+        while (m < N + 1) {
+            if (Math.floor((m - 1) / T) === ((m - 1) / T)) {
+                Nm = 0
+            }
+            if (Math.floor(m / TM) === m / TM) {
+                Nm = Nm + 1
+            }
+            if (0 < Math.floor(m / T)) {
+                ActuMR = ActuMR + Nm * Ca / (Math.pow(1 + a, m))
+            }
+            m = m + 1
+        }
+    }
+    return ActuMR
+}
+
+
+console.log('CALCUL DU COUT DE CYCLE DE VIE DES MURS DU PROJET :')
+
+// Creating collector instance and collecting all the walls from the model
+param_collector = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_ProjectInformation).WhereElementIsNotElementType()
+
+for (let param of param_collector) {
+    Act_reel = param.LookupParameter('TAR')
+    Time_act = param.LookupParameter('T_act')
+    Time_Life = param.LookupParameter('Lifetime')
+}
+
+console.log('. ')
+console.log('**********************************************************************')
+console.log('. ')
+console.log('PARAMETERS DU PROJET :')
+console.log('______________________ ')
+console.log('Taux actualisation reel : ')
+console.log(Act_reel.AsDouble())
+console.log('. ')
+console.log('Period actualisation : ')
+console.log(Time_act.AsInteger())
+console.log('. ')
+console.log('Durer de vie : ')
+console.log(Time_Life.AsInteger())
+console.log('. ')
+console.log('**********************************************************************')
+
+
+// Creating collector instance and collecting all the walls from the model
+wall_collector = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_Walls).WhereElementIsNotElementType()
+
+
+// Iterate over wall and collect data
+total_surface = 0.0
+cst_pt = 0.0
+CR_pt = 0.0
+CM_pt = 0.0
+D_pt = 0.0
+
+for (let wall of wall_collector) {
+    surf_param = wall.Parameter[DB.BuiltInParameter.HOST_AREA_COMPUTED]
+    ccv_pu_param = wall.LookupParameter('CCV_PU')
+    CM_pu_param = wall.LookupParameter('Cost_M')
+    T_M = wall.LookupParameter('Period_M')
+    TX_M = wall.LookupParameter('Tx_M')
+    CR_pu_param = wall.LookupParameter('Cost_R')
+    T_R = wall.LookupParameter('Period_R')
+    TX_R = wall.LookupParameter('Tx_R')
+    D_pu = wall.LookupParameter('Cost_D')
+    if (surf_param) {
+        total_surface = total_surface + surf_param.AsDouble() / 10.7639104167098
+    }
+    if (ccv_pu_param) {
+        if (surf_param) {
+            cst_pt = cst_pt + ccv_pu_param.AsDouble() * total_surface
+        }
+    }
+    if (CR_pu_param) {
+        if (T_R) {
+            if (TX_R) {
+                CR_pt = CR_pt + ActuMR(CR_pu_param.AsDouble() * TX_R.AsDouble() * total_surface, Time_act.AsInteger(), Act_reel.AsDouble(), Time_Life.AsInteger(), T_R.AsInteger())
+            }
+        }
+    }
+
+    if (CM_pu_param) {
+        if (T_M) {
+            if (TX_M) {
+                CM_pt = CM_pt + ActuMR(CM_pu_param.AsDouble() * TX_M.AsDouble() * total_surface, Time_act.AsInteger(), Act_reel.AsDouble(), Time_Life.AsInteger(), T_M.AsInteger())
+            }
+        }
+    }
+    if (D_pu) {
+        D_pt = D_pt + Actu(D_pu.AsDouble() * total_surface, Time_Life.AsInteger(), Act_reel.AsDouble(), Time_Life.AsInteger())
+    }
+}
+
+CMR = CR_pt + CM_pt
+ccv_pt = CMR + cst_pt + D_pt
+// now that results are collected, console.log the total
+console.log("Total Surface in m2 is: {}".format(total_surface))
+console.log("Total Cost of construction in XCFA is: {}".format(cst_pt))
+console.log("Total Cost of Maintenance and replacement in XCFA is: {}".format(CMR))
+console.log("Total Cost of Deconstruction in XCFA is: {}".format(D_pt))
+console.log("Total life cycle cost in XCFA is: {}".format(ccv_pt))

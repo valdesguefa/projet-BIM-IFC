@@ -138,6 +138,7 @@ function ActuMR(Ca, T, a, N, TM) {
 
 export default function Demmentellement(props) {
     React.useEffect(() => {
+        props.setdisableSidebar(false)
         props.setshowAppBar(true)
     }, [])
 

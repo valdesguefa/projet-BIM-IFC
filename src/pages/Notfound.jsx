@@ -4,6 +4,7 @@ import '../styles/notfound.css'
 const Notfound = (props) => {
 
     useEffect(() => {
+        props.setdisableSidebar(false)
         props.setshowAppBar(false)
       }, [])
 

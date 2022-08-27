@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useNavigate } from "react-router-dom";
 import profil from '../shared/profil.png';
@@ -8,6 +8,9 @@ import '../styles/debut.css'
 export default function Debut(props) {
 
   let navigate = useNavigate();
+useEffect(() => {
+  props.setdisableSidebar(true)
+}, [])
 
 
   return (

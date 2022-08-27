@@ -45,6 +45,7 @@ export default function Results(props) {
   const [Cdementellement, setCdementellement] = useState(0)
 
   useEffect(() => {
+    props.setdisableSidebar(false)
     props.setshowAppBar(false)
   }, [])
 

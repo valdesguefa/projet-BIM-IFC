@@ -21,6 +21,7 @@ export default function Settings(props) {
   }
 
   useEffect(() => {
+    props.setdisableSidebar(false)
     props.setshowAppBar(false)
   }, [])
 
@@ -30,7 +31,7 @@ export default function Settings(props) {
       <div className='form'>
         <form onSubmit={(e) => nextPage(e)}>
           <div className="titleForm">
-            Parametres
+            PARAMETRES
           </div>
           <div style={{ marginTop: '-30px' }}>
             <TextField
