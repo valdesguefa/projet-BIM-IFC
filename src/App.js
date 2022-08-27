@@ -45,7 +45,7 @@ function App() {
 
 
   //parametre generaux
-  const [persistance, setpersistance] = useState(25)
+  const [persistance, setpersistance] = useState(50)
   const [actualisation, setactualisation] = useState(5)
   const [actualisationReel, setactualisationReel] = useState(4)
   const [inflation, setinflation] = useState('')
@@ -59,11 +59,11 @@ function App() {
 
   // useEffect(() => {
   //   //   console.log('voici le nom', nom)
-  //   console.log('voici le constructDate', constructDate)
+  //   console.log('voici le persistance +++++++++++===', persistance)
   //   //   console.log('voici le constructionArea', constructionArea)
   //   //   console.log('voici le nature', nature)
 
-  // }, [constructDate])
+  // }, [persistance])
 
   const [showSideBar, setshowSideBar] = useState(false)
 

@@ -381,7 +381,7 @@ export default function Maintenance(props) {
     const [openNotif, setOpenNotif] = React.useState(false);
     const [message, setmessage] = React.useState('');
     const [errorType, seterrorType] = React.useState('');
-    const [operate, setoperate] = React.useState(false);
+    const [operate, setoperate] = React.useState(25);
 
 
     const handleCloseNotif = (event, reason) => {
@@ -467,6 +467,10 @@ export default function Maintenance(props) {
             label: 'm',
         },
     ];
+    React.useEffect(() => {
+        console.log('periode de persistance props.persistance', props.persistance)
+        setoperate(props.persistance)
+    }, [props.persistance])
 
     const reducePtc = (montant) => {
         var tabFunct = fonction
@@ -563,6 +567,18 @@ export default function Maintenance(props) {
         props.setprestation(prestation)
     }, [construction, compose, fonction, prestation])
 
+    const [ptc1, setptc1] = React.useState(0)
+    React.useEffect(() => {
+
+
+        var a = item.txm / 100
+        var b = item.txr / 100
+        console.log('valeur 1', ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr))
+        console.log('valeur2', ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm))
+        var ptc2 = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr) + ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+        setptc1(ptc2)
+    }, [props])
+
     return (
         <div>
             <Notification open={openNotif} type={errorType} message={message} handleClose={handleCloseNotif} />
@@ -573,8 +589,8 @@ export default function Maintenance(props) {
                     <form onSubmit={(event) => {
                         event.preventDefault();
 
-                        setoperate(true)
 
+                        console.log('entrer')
 
                         var tab = [];
                         var tabFunct = fonction
@@ -583,15 +599,20 @@ export default function Maintenance(props) {
                         var len = 0
                         var val = 0
 
-                        var a = item.txm / 100
-                        var b = item.txr / 100
-                        var ptc1 = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr) + ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
-                        //  console.log('item.pu',item.pu)
+
+
+
+                        // var a = item.txm / 100
+                        // var b = item.txr / 100
+                        // console.log('valeur 1',ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr))
+                        // console.log('valeur2',ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm))
+                        // var ptc1 = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr) + ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                        // //  console.log('item.pu',item.pu)
                         //  console.log('item.quantite',item.quantite)
 
                         // console.log('item.quantite',item.quantite);
                         // console.log('item.pu',item.pu);
-                        // console.log('ptc',ptc1)
+                        console.log('ptc', ptc1)
                         // var it = {
                         //     designation: item.designation,
                         //     id: '',
@@ -629,9 +650,9 @@ export default function Maintenance(props) {
 
 
                             //-----------
-                            b = item.txr / 100
+                            var b = item.txr / 100
 
-                            a = item.txm / 100
+                            var a = item.txm / 100
                             var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
 
                             var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
@@ -677,10 +698,10 @@ export default function Maintenance(props) {
                             b = item.txr / 100
 
                             a = item.txm / 100
-                            var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
 
-                            var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
-                            var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+                            f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
                             tab.push({ ...item, id: val, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr), cmrtg: c + f })
                             //----------------          
 
@@ -714,12 +735,12 @@ export default function Maintenance(props) {
                             b = item.txr / 100
 
                             a = item.txm / 100
-                            var d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            d = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
 
-                            var c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
-                            var f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
+                            c = ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr)
+                            f = ActuMR(item.quantite * a * item.cm, props.actualisation, props.actualisationReel / 100, props.persistance, item.tm)
                             tab.push({ ...item, id: val, cmg: d, crg: ActuMR(item.quantite * b * item.cr, props.actualisation, props.actualisationReel / 100, props.persistance, item.tr), cmrtg: c + f })
-
+                            console.log('qwertyy', tab)
 
 
                             setcompose(tab)
@@ -973,7 +994,7 @@ export default function Maintenance(props) {
                                     <TableCell align="left">{row.cmrtg.toFixed(3)}</TableCell>
                                     <TableCell align="left"><DeleteIcon color="primary" titleAccess={`supprimer un(e) ${row.designation}`} onClick={(designa) => {
                                         var tab = construction.filter((elt) => elt.id !== row.id)
-                                        if(row.designation === 'INFRASTRUCTURE'){
+                                        if (row.designation === 'INFRASTRUCTURE') {
                                             tab = [...tab, {
                                                 designation: 'INFRASTRUCTURE',
                                                 id: 'A.1',
@@ -990,7 +1011,7 @@ export default function Maintenance(props) {
                                                 cmrtg: 0
                                             }]
                                         }
-                                       else if(row.designation === 'SUPERSTRUCTURE'){
+                                        else if (row.designation === 'SUPERSTRUCTURE') {
                                             tab = [...tab, {
                                                 designation: 'SUPERSTRUCTURE',
                                                 id: 'A.2',
@@ -1007,7 +1028,7 @@ export default function Maintenance(props) {
                                                 cmrtg: 0
                                             }]
                                         }
-                                        else if(row.designation === 'EQUIPEMENTS'){
+                                        else if (row.designation === 'EQUIPEMENTS') {
                                             tab = [...tab, {
                                                 designation: 'EQUIPEMENTS',
                                                 id: 'A.3',
@@ -1025,11 +1046,11 @@ export default function Maintenance(props) {
                                             }]
                                         }
 
-                                        console.log('that is contruction tab',tab)
+                                        console.log('that is contruction tab', tab)
                                         setconstruction(tab)
-//   designation: 'INFRASTRUCTUR
-//   designation: 'SUPERSTRUCTUR
-//   designation: 'EQUIPEMENTS',
+                                        //   designation: 'INFRASTRUCTUR
+                                        //   designation: 'SUPERSTRUCTUR
+                                        //   designation: 'EQUIPEMENTS',
 
                                         var tab = compose.filter((elt) => !elt.id.includes(row.id))
                                         setcompose(tab)

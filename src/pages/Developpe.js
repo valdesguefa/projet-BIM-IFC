@@ -634,6 +634,60 @@ export default function Developpe(props) {
                                     <TableCell align="left">{row.ptc}</TableCell>
                                     <TableCell align="left"><DeleteIcon color="primary" titleAccess={`supprimer un(e) ${row.designation}`} onClick={(designa) => {
                                         var tab = construction.filter((elt) => elt.id !== row.id)
+
+                                        if(row.designation === 'INFRASTRUCTURE'){
+                                            tab = [...tab, {
+                                                designation: 'INFRASTRUCTURE',
+                                                id: 'A.1',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+                                       else if(row.designation === 'SUPERSTRUCTURE'){
+                                            tab = [...tab, {
+                                                designation: 'SUPERSTRUCTURE',
+                                                id: 'A.2',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+                                        else if(row.designation === 'EQUIPEMENTS'){
+                                            tab = [...tab, {
+                                                designation: 'EQUIPEMENTS',
+                                                id: 'A.3',
+                                                quantite: 0,
+                                                unite: '',
+                                                tm: 1,
+                                                txm: 0,
+                                                cm: 0,
+                                                cmg: 0,
+                                                tr: 1,
+                                                txr: 0,
+                                                cr: 0,
+                                                crg: 0,
+                                                cmrtg: 0
+                                            }]
+                                        }
+
+
                                         setconstruction(tab)
 
                                         var tab1 = compose.filter((elt) => !elt.id.includes(row.id))
