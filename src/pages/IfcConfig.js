@@ -11,7 +11,7 @@ export default function IfcConfig(props) {
     },[])
 
     return (
-        <div style={{ margin:'0' ,width:'150%', height:'100%',zIndex:'2' }} className='cont'>
+        <div style={{ width:'200%', height:'100%',zIndex:'2' }} className='cont'>
             <div style={{ marginLeft: '40%',zIndex:'3' }} >
                 <a href='https://ifcjs.github.io/web-ifc-viewer/example/index' target="_blank" onClick={() => setopen(!open)} >
                     <Button variant="contained"
