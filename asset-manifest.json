@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/projet-BIM-IFC/static/css/main.3f4920b9.css",
-    "main.js": "/projet-BIM-IFC/static/js/main.2773368a.js",
+    "main.css": "/projet-BIM-IFC/static/css/main.63e93bd5.css",
+    "main.js": "/projet-BIM-IFC/static/js/main.a8da4c80.js",
     "static/js/787.c1c2415d.chunk.js": "/projet-BIM-IFC/static/js/787.c1c2415d.chunk.js",
     "static/media/Pacifico-Regular.ttf": "/projet-BIM-IFC/static/media/Pacifico-Regular.93cd59fff879b8bdd57d.ttf",
     "static/media/PageNotFound.jpg": "/projet-BIM-IFC/static/media/PageNotFound.ce802ce6d59821dbf09b.jpg",
     "static/media/pngegg.png": "/projet-BIM-IFC/static/media/pngegg.9e17f6b15ba87b24a8d3.png",
     "index.html": "/projet-BIM-IFC/index.html",
-    "main.3f4920b9.css.map": "/projet-BIM-IFC/static/css/main.3f4920b9.css.map",
-    "main.2773368a.js.map": "/projet-BIM-IFC/static/js/main.2773368a.js.map",
+    "main.63e93bd5.css.map": "/projet-BIM-IFC/static/css/main.63e93bd5.css.map",
+    "main.a8da4c80.js.map": "/projet-BIM-IFC/static/js/main.a8da4c80.js.map",
     "787.c1c2415d.chunk.js.map": "/projet-BIM-IFC/static/js/787.c1c2415d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f4920b9.css",
-    "static/js/main.2773368a.js"
+    "static/css/main.63e93bd5.css",
+    "static/js/main.a8da4c80.js"
   ]
 }
