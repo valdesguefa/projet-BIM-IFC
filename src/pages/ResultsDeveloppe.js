@@ -281,7 +281,7 @@ export default function ResultsDeveloppe(props) {
                         <tr>
                             <td>taux d'actualisation :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-                            <td align='right'>{props.actualisation}ans</td>
+                            <td align='right'>{props.actualisationReel} %</td>
                         </tr>
 
                         <tr>

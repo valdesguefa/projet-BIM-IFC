@@ -66,7 +66,7 @@ export default function IfcConfig(props) {
                             <tr>
                                 <td>taux d'actualisation :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-                                <td align='right'>{open ? props.actualisation : 0} ans</td>
+                                <td align='right'>{open ? props.actualisationReel : 0} %</td>
                             </tr>
 
                             <tr>

@@ -29,7 +29,7 @@ export default function ResultsSimple(props) {
                         <tr>
                             <td>taux d'actualisation :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-                            <td style={{ paddingLeft: '200px' }} align='right'>{props.actualisation}ans</td>
+                            <td style={{ paddingLeft: '200px' }} align='right'>{props.actualisationReel} %</td>
                         </tr>
 
                         <tr>
