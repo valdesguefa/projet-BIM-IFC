@@ -36,7 +36,10 @@ useEffect(() => {
             <img src={analysis} alt="analysis"   />
             <h3 style={{ color: 'white' }}>Commencer une analyse</h3>
           </div>
-          {/* <img className='imge' src={analysis} alt="analysis" title='Commencer une Analyse' /> */}
+          {/*
+           <img className='imge' src={analysis} alt="analysis" title='Commencer une Analyse' />
+           <></>
+           */}
         </div>
       </div>
     </div>
